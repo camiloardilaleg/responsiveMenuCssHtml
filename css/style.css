@@ -1,0 +1,120 @@
+:root {
+    --primary: #121f3d;
+    --white: #fff;
+    --gray: #2a324b;
+}
+
+/* selector universal (*) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* le dice al navegador que tome en cuenta los `border`
+    y `padding` para el width y height de los elmentos */
+}
+
+body {
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: var(--white);
+    background-color: var(--primary);
+    height: 100vh;
+}
+
+.nav {
+    border-bottom: 2px solid var(--gray);
+}
+
+/* Ocultamos el input */
+.nav__checkbox {
+    display: none;
+}
+
+.nav__toggle {
+    position: absolute;
+    cursor: pointer; /* el cursor es una manito */
+    margin: 0.1rem;
+    right: 0;
+}
+
+.nav__toggle svg {
+    width: 2rem;
+    fill: var(--white);
+}
+
+.nav__toggle .close {
+    display: none;
+}
+
+.nav__toggle .close,
+.nav__toglle .menu {
+    margin-top: 0.1rem;
+}
+
+.nav__menu {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem;
+}
+
+.nav__menu li {
+    display: none;
+    list-style-type: none;
+}
+
+.nav__menu li:first-child {
+    display: block;
+    margin-right: auto;
+}
+
+.nav__menu a {
+    color: inherit;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.menu__logo {
+    height: 30px;
+}
+  
+.menu__logoimg {
+    height: 100%;
+}
+
+/* el "~" le dice que seleccione a todos los hijos que SIGUEN
+a #nav__checkbox:checked ~ ul.nav__menu*/
+#nav__checkbox:checked ~ ul.nav__menu li {
+    display: block;
+}
+
+/* hacemos que aparezca la imagen de X cuando este
+activado el checked */
+#nav__checkbox:checked ~ label.nav__toggle .close {
+    display: block;
+}
+
+/* Ocultamos la imagen de la hamburguesa */
+#nav__checkbox:checked ~ label.nav__toggle .menu {
+    display: none;
+}
+
+/* cuando la pantalla tenga sea >= 560 entonces los botones
+de la hamburguesa y cerrado desapareceran, el menu de contenido
+se hara horizontal (en fila) y  */
+@media only screen and (min-width: 560px){
+    .nav__toggle {
+        display: none;
+    }
+
+    .nav__menu {
+        flex-direction: row;
+    }
+    
+    /*selecciona todos los elementos li que ESTAN dentro de 
+    la clase .nav__menu  */
+    .nav__menu li {
+        display: block;
+    }
+}
